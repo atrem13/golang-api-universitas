@@ -1,10 +1,14 @@
 package mahasiswa
 
 type MahasiswaFormatter struct {
-	ID      int    `json:"id`
-	Nim     string `json:"nim"`
-	Nama    string `json:"nama"`
-	ProdiID int    `json:"prodi_id"`
+	ID      int                     `json:"id`
+	Nim     string                  `json:"nim"`
+	Nama    string                  `json:"nama"`
+	ProdiID int                     `json:"prodi_id"`
+	Prodi   MahasiswaProdiFormatter `json:"prodi"`
+}
+type MahasiswaProdiFormatter struct {
+	Nama string `json:"nama"`
 }
 
 func FormatMahasiswa(mahasiswa Mahasiswa) MahasiswaFormatter {
@@ -13,6 +17,12 @@ func FormatMahasiswa(mahasiswa Mahasiswa) MahasiswaFormatter {
 	mahasiswaFormatter.Nim = mahasiswa.Nim
 	mahasiswaFormatter.Nama = mahasiswa.Nama
 	mahasiswaFormatter.ProdiID = mahasiswa.ProdiID
+
+	prodi := mahasiswa.Prodi
+	mahasiswasProdiFormatter := MahasiswaProdiFormatter{}
+	mahasiswasProdiFormatter.Nama = prodi.Nama
+
+	mahasiswaFormatter.Prodi = mahasiswasProdiFormatter
 
 	return mahasiswaFormatter
 }
