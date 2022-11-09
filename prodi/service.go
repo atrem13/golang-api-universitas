@@ -5,6 +5,7 @@ type Service interface {
 	GetProdiByID(input GetProdiDetailInput) (Prodi, error)
 	CreateProdi(input CreateProdiInput) (Prodi, error)
 	UpdateProdi(inputID GetProdiDetailInput, input CreateProdiInput) (Prodi, error)
+	DeleteProdi(inputID GetProdiDetailInput) (Prodi, error)
 }
 
 type service struct {
@@ -47,12 +48,24 @@ func (s *service) UpdateProdi(inputID GetProdiDetailInput, inputData CreateProdi
 	if err != nil {
 		return prodi, err
 	}
-	prodi.Name = inputData.Name
+	prodi.Nama = inputData.Nama
 
-	updateProdi, err := s.repository.Save(prodi)
+	updateProdi, err := s.repository.Update(prodi)
 	if err != nil {
 		return updateProdi, err
 	}
 	return updateProdi, nil
 
+}
+
+func (s *service) DeleteProdi(inputID GetProdiDetailInput) (Prodi, error) {
+	prodi, err := s.repository.FindByID(inputID.ID)
+	if err != nil {
+		return prodi, err
+	}
+	deleteProdi, err := s.repository.Delete(prodi)
+	if err != nil {
+		return deleteProdi, err
+	}
+	return deleteProdi, nil
 }

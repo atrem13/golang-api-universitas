@@ -21,14 +21,14 @@ func FormatProdis(prodis []Prodi) []ProdiFormatter {
 	return prodisFormatter
 }
 
-type ProdiDetailFormatter struct {
-	ID   int    `json:"id"`
-	Nama string `json:"nama"`
-}
+// type ProdiDetailFormatter struct {
+// 	ID   int    `json:"id"`
+// 	Nama string `json:"nama"`
+// }
 
-func FormatProdiDetail(prodi Prodi) ProdiDetailFormatter {
-	prodiDetailFormatter := ProdiDetailFormatter{}
-	prodiDetailFormatter.Nama = prodi.Nama
+// func FormatProdiDetail(prodi Prodi) ProdiDetailFormatter {
+// 	prodiDetailFormatter := ProdiDetailFormatter{}
+// 	prodiDetailFormatter.Nama = prodi.Nama
 
-	return prodiDetailFormatter
-}
+// 	return prodiDetailFormatter
+// }

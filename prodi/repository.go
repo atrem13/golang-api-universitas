@@ -7,6 +7,7 @@ type Repository interface {
 	FindByID(ID int) (Prodi, error)
 	Save(prodi Prodi) (Prodi, error)
 	Update(prodi Prodi) (Prodi, error)
+	Delete(prodi Prodi) (Prodi, error)
 }
 
 type repository struct {
@@ -36,7 +37,7 @@ func (r *repository) FindByID(ID int) (Prodi, error) {
 }
 
 func (r *repository) Save(prodi Prodi) (Prodi, error) {
-	err := r.db.Creeate(&prodi).Error
+	err := r.db.Create(&prodi).Error
 	if err != nil {
 		return prodi, err
 	}
@@ -44,7 +45,15 @@ func (r *repository) Save(prodi Prodi) (Prodi, error) {
 }
 
 func (r *repository) Update(prodi Prodi) (Prodi, error) {
-	err := r.db.Creeate(&prodi).Error
+	err := r.db.Save(&prodi).Error
+	if err != nil {
+		return prodi, err
+	}
+	return prodi, nil
+}
+
+func (r *repository) Delete(prodi Prodi) (Prodi, error) {
+	err := r.db.Delete(&prodi).Error
 	if err != nil {
 		return prodi, err
 	}
