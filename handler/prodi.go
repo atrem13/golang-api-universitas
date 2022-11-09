@@ -23,7 +23,7 @@ func (h *prodiHandler) GetProdis(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	message := "List of prodis"
+	message := "List of prodi"
 	if len(prodis) < 1 {
 		message = "Table prodi is empty"
 	}
@@ -119,13 +119,13 @@ func (h *prodiHandler) DeleteProdi(c *gin.Context) {
 		return
 	}
 
-	updateProdi, err := h.service.DeleteProdi(inputID)
+	deleteProdi, err := h.service.DeleteProdi(inputID)
 	if err != nil {
 		response := helper.APIResponse("Failed to delete campaign", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	formatter := prodi.FormatProdi(updateProdi)
+	formatter := prodi.FormatProdi(deleteProdi)
 	response := helper.APIResponse("Success to delete prodi", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 
