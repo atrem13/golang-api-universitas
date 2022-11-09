@@ -5,5 +5,5 @@ type GetProdiDetailInput struct {
 }
 
 type CreateProdiInput struct {
-	Nama string `json:"name" binding:"required"`
+	Nama string `json:"nama" binding:"required"`
 }

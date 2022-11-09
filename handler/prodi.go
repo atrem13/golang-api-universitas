@@ -23,8 +23,12 @@ func (h *prodiHandler) GetProdis(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
+	message := "List of prodis"
+	if len(prodis) < 1 {
+		message = "Table prodi is empty"
+	}
 	formatter := prodi.FormatProdis(prodis)
-	response := helper.APIResponse("List of prodis", http.StatusOK, "success", formatter)
+	response := helper.APIResponse(message, http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 }
 
@@ -57,14 +61,14 @@ func (h *prodiHandler) CreateProdi(c *gin.Context) {
 		errors := helper.FormatValidationError(err)
 		errorMessage := gin.H{"errors": errors}
 
-		response := helper.APIResponse("Error, fail create prodi", http.StatusBadRequest, "error", errorMessage)
+		response := helper.APIResponse("Error, fail create prodix", http.StatusBadRequest, "error", errorMessage)
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
 
 	newProdi, err := h.service.CreateProdi(input)
 	if err != nil {
-		response := helper.APIResponse("Error, fail to create prodi", http.StatusBadRequest, "error", nil)
+		response := helper.APIResponse("Error, fail to create prodix", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}

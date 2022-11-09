@@ -46,7 +46,7 @@ func main() {
 	api.GET("/prodis/:id", prodiHandler.GetProdi)
 	api.POST("/prodis", prodiHandler.CreateProdi)
 	api.PUT("/prodis/:id", prodiHandler.UpdateProdi)
-	api.DELETE("/prodis/:id", prodiHandler.UpdateProdi)
+	api.DELETE("/prodis/:id", prodiHandler.DeleteProdi)
 
 	router.Run()
 

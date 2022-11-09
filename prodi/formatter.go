@@ -7,6 +7,7 @@ type ProdiFormatter struct {
 
 func FormatProdi(prodi Prodi) ProdiFormatter {
 	prodiFormatter := ProdiFormatter{}
+	prodiFormatter.ID = prodi.ID
 	prodiFormatter.Nama = prodi.Nama
 
 	return prodiFormatter
