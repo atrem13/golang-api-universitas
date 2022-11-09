@@ -37,7 +37,7 @@ func (r *repository) FindByID(ID int) (Mahasiswa, error) {
 }
 
 func (r *repository) Save(mahasiswa Mahasiswa) (Mahasiswa, error) {
-	err := r.db.Create(&mahasiswa).Error
+	err := r.db.Preload("Prodi").Create(&mahasiswa).Error
 	if err != nil {
 		return mahasiswa, err
 	}

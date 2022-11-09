@@ -62,7 +62,7 @@ func (s *service) UpdateMahasiswa(inputID GetMahasiswaDetailInput, inputData Cre
 	return updateMahasiswa, nil
 }
 
-func (s *service) DeleteMahasiswa(inputID GetMahasiswaDetailInput, inputData CreateMahasiswaInput) (Mahasiswa, error) {
+func (s *service) DeleteMahasiswa(inputID GetMahasiswaDetailInput) (Mahasiswa, error) {
 	mahasiswa, err := s.repository.FindByID(inputID.ID)
 	if err != nil {
 		return mahasiswa, err

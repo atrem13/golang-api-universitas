@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/atrem13/golang-api-universitas/handler"
+	"github.com/atrem13/golang-api-universitas/mahasiswa"
 	"github.com/atrem13/golang-api-universitas/prodi"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -26,15 +27,19 @@ func main() {
 
 	// migrate database
 	db.AutoMigrate(&prodi.Prodi{})
+	db.AutoMigrate(&mahasiswa.Mahasiswa{})
 
 	// initiate repository
 	prodiRepository := prodi.NewRepository(db)
+	mahasiswaRepository := mahasiswa.NewRepository(db)
 
 	// initiate service
 	prodiService := prodi.NewService(prodiRepository)
+	mahasiswaService := mahasiswa.NewService(mahasiswaRepository)
 
 	// initiate handler
 	prodiHandler := handler.NewProdiHandler(prodiService)
+	mahasiswaHandler := handler.NewMahasiswaHandler(mahasiswaService)
 
 	// initiate route
 	router := gin.Default()
@@ -47,6 +52,13 @@ func main() {
 	api.POST("/prodis", prodiHandler.CreateProdi)
 	api.PUT("/prodis/:id", prodiHandler.UpdateProdi)
 	api.DELETE("/prodis/:id", prodiHandler.DeleteProdi)
+
+	// mahasiswa
+	api.GET("/mahasiswas", mahasiswaHandler.GetMahasiswas)
+	api.GET("/mahasiswas/:id", mahasiswaHandler.GetMahasiswa)
+	api.POST("/mahasiswas", mahasiswaHandler.CreateMahasiswa)
+	api.PUT("/mahasiswas/:id", mahasiswaHandler.UpdateMahasiswa)
+	api.DELETE("/mahasiswas/:id", mahasiswaHandler.DeleteMahasiswa)
 
 	router.Run()
 

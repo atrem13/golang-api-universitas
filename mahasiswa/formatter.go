@@ -1,7 +1,7 @@
 package mahasiswa
 
 type MahasiswaFormatter struct {
-	ID      int                     `json:"id`
+	ID      int                     `json:"id"`
 	Nim     string                  `json:"nim"`
 	Nama    string                  `json:"nama"`
 	ProdiID int                     `json:"prodi_id"`
