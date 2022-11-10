@@ -5,7 +5,7 @@ type GetMahasiswaDetailInput struct {
 }
 
 type CreateMahasiswaInput struct {
-	Nim     string `json:"nim" binding:"required"`
-	Nama    string `json:"nama" binding:"required"`
-	ProdiID int    `json:"prodi_id" binding:"required"`
+	Nim     string `json:"nim" `
+	Nama    string `json:"nama" `
+	ProdiID int    `json:"prodi_id" `
 }
