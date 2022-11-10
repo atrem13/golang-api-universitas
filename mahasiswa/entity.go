@@ -10,7 +10,7 @@ type Mahasiswa struct {
 	ID        int
 	Nim       string
 	Nama      string
-	ProdiID   int
+	ProdiID   int `gorm:"foreignKey:ID"`
 	Prodi     prodi.Prodi
 	CreatedAt time.Time
 	UpdatedAt time.Time

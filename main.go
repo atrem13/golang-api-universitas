@@ -8,8 +8,8 @@ import (
 	"github.com/atrem13/golang-api-universitas/mahasiswa"
 	"github.com/atrem13/golang-api-universitas/prodi"
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	PORT := "3306"
 	DBNAME := "golang_universitas"
 	URL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", USER, PASS, HOST, PORT, DBNAME)
-	db, err := gorm.Open("mysql", URL)
+	db, err := gorm.Open(mysql.Open(URL), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal(err.Error())

@@ -1,6 +1,6 @@
 package prodi
 
-import "github.com/jinzhu/gorm"
+import "gorm.io/gorm"
 
 type Repository interface {
 	FindAll() ([]Prodi, error)

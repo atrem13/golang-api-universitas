@@ -1,6 +1,6 @@
 package mahasiswa
 
-import "github.com/jinzhu/gorm"
+import "gorm.io/gorm"
 
 type Repository interface {
 	FindAll() ([]Mahasiswa, error)
@@ -45,7 +45,9 @@ func (r *repository) Save(mahasiswa Mahasiswa) (Mahasiswa, error) {
 }
 
 func (r *repository) Update(mahasiswa Mahasiswa) (Mahasiswa, error) {
-	err := r.db.Save(&mahasiswa).Error
+	// err := r.db.Save(&mahasiswa).Error
+	err := r.db.Model(&mahasiswa).Where("id = ?", mahasiswa.ID).Updates(map[string]interface{}{"nim": mahasiswa.Nim, "nama": mahasiswa.Nama, "prodi_id": 3}).Error
+	// err := r.db.Session(&gorm.Session{FullSaveAssociations: true}).Save(&mahasiswa).Error
 	if err != nil {
 		return mahasiswa, err
 	}
